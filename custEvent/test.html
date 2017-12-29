@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>test custEvent</title>
+</head>
+<body>
+	<script src="./index.js"></script>
+	<script type="text/javascript">
+		(function() {
+			var custEvent = CustEvent.on('testTrigger',function(){
+				console.log('testTrigger: ', new Date().getTime());
+			});
+			custEvent.trigger('testTrigger');
+
+			CustEvent.on('testOff',function(){
+				console.log('testOff: ', new Date().getTime());
+			});
+			var custEvent = CustEvent.on('testOff',function(){
+				console.log('testOffOff: ', new Date().getTime());
+			});
+			custEvent.trigger('testOff');
+			custEvent.off('testOff');
+			custEvent.trigger('testOff');
+		})();
+	</script>
+</body>
+</html>
